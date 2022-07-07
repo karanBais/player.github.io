@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;484&family=Lobster+Two&family=Source+Sans+Pro:ital,wght@0,300;0,700;1,600&family=Zen+Kurenaido&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+*::before,::after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+body{
+    background-color: rgb(207, 207, 207);
+    background-image: url("image/background.jpg");
+}
+
+
+
+.main{
+    height: 90vh;
+    width: 100vw;
+    display: grid;
+    place-items: center;
+}
+
+
+
+
+#title{
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    word-spacing: 0.3rem;
+    color: black;
+    text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.3);
+    padding-top: 2rem;
+}
+
+#artist{
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    word-spacing: 0.5rem;
+    text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.3);
+    color: rgb(43, 39, 39);
+    margin-top: 1rem;
+    
+}
+
+.music_container{
+    width: 25rem;
+    height: 37rem;
+    background-color: aquamarine;
+    border-radius: 2rem;
+    box-shadow: 0 1.2rem 3rem 0.5rem rgba(0, 0, 0, 0.3);
+}
+
+
+.image-container{
+    width: 15rem;
+    height: 15rem;
+    margin: 5rem 0 0 5rem;
+}
+
+.images{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 1.2rem 3rem 1rem rgba(241, 3, 170, 0.4);
+}
+
+
+/*#### Controls ####*/
+
+.controls{
+    width: 20rem;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    margin-top: 1rem;
+}
+
+#previous{
+    color: black;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    filter: drop-shadow(0 1.2rem 3rem 1rem rgba(0, 0, 0, 0.4));
+}
+
+#play{
+    font-size: 2.5rem;
+    cursor: pointer;
+    color: black;
+    filter: drop-shadow(0 1.2rem 3rem 1rem rgba(0, 0, 0, 0.4));
+}
+
+#next{
+    color: black;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    filter: drop-shadow(0 1.2rem 3rem 1rem rgba(0, 0, 0, 0.4));
+}
+
+
+
+#previous:hover, #next:hover{
+    color: grey;
+}
+
+#play:hover{
+    color: brown;
+}
+
+/*  Animation for image*/
+
+.anime{
+    animation: rotation 3s linear infinite;
+}
+
+@keyframes rotation{
+    from { transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+
+/*#### PROGRESS BAR ###*/
+
+.progressbar-container{
+    width: 90%;
+    height: auto;
+    padding: 1rem 0;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    
+}
+
+.progress-div{
+    width: 100%;
+    height: 0.4rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.07),
+    0 4px 8px rgba(0, 0, 0, 0.07), 0 8px 16px rgba(0, 0, 0, 0.07),
+    0 16px 32px rgba(0, 0, 0, 0.07), 0 32px 64px rgba(0, 0, 0, 0.07);
+
+    border-radius: 3rem;
+    position: relative;
+    margin-top: 0.5rem;
+    transition: all 1s linear;
+    -moz-transition: all 1s linear;
+    -o-transition: all 1s linear;
+    -webkit-transition: all 1s linear;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.progress{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: black;
+    border-radius: 3rem;
+    transition: width 1s linear;
+    -moz-transition: width 1s linear;
+    -o-transition: width 1s linear;
+    -webkit-transition: width 1s linear;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.duration-meter{
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    font-weight: 600;
+}

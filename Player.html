@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    
+    <link rel="stylesheet" href="Player.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,  shrink-to-fit=no">
+    <title>Music Player</title>
+</head>
+<header>
+
+</header>
+<body>
+    <div class="main">
+        <div class="music_container">
+            
+            <h2 id="title"></h2>
+            <h3 id="artist"></h3>
+            
+            <div class="image-container">
+
+                <img src="image/cheap.jpg" alt="" class="images">
+
+
+            </div>
+
+            <audio src="music/Cheap.mp3"></audio>
+
+            <!---PROGRESS BAR-->
+            <div class="progressbar-container" id="progress-container">
+
+                <div class="duration-meter">
+
+                </div>
+
+                <div class="progress-div" id="progress-div">
+
+
+                    <div class="progress" id="progress"></div>
+                </div>
+            </div>
+            
+            
+            <!----CONTROLS-->
+            <div class="controls">
+                <i class="fas fa-backward" id="previous" title="previous"></i>
+                <i class="fas fa-play" id="play" title="play"></i>
+                <i class="fas fa-forward" id="next" title="next"></i>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script>
+
+const music = document.querySelector("audio");
+const img = document.querySelector("img");
+const play = document.getElementById("play");
+const title = document.getElementById("title");
+const artist = document.getElementById("artist");
+const previous = document.getElementById("previous");
+const next = document.getElementById("next");
+
+let progress = document.getElementById("progress");
+let current_time = document.getElementById("current_time");
+let total_duration = document.getElementById("duration");
+
+
+let isplaying = false;
+
+const playmusic= function(){
+    isplaying=true;
+    music.play();
+    play.classList.replace("fa-play","fa-pause");
+    img.classList.add("anime");
+}
+
+const pausemusic= function(){
+    isplaying=false;
+    music.pause();
+    play.classList.replace("fa-pause","fa-play");
+    img.classList.remove("anime");
+}
+
+play.addEventListener("click" ,function(){
+    if(isplaying){
+        pausemusic();
+    }
+    else{
+        playmusic();
+    }
+});
+
+// changing the music data.
+
+
+const songs = [
+    {
+        name: "cheap",
+        title: "Cheap Thrills",
+        artist: "Sia",
+    },
+    {
+    
+        name: "lean on",
+        title: "Lean On",
+        artist: "Major Lazer ft.Dj-Snake",
+    },
+    {
+
+        name: "see you again",
+        title: "See you again",
+        artist: "Wiz Khalifa, Charli Puth",
+
+    },
+    {
+        name: "something",
+        title: " Something just like this",
+        artist: "The Chainsmokers",
+    },
+
+];
+
+const loadsong = (songs) =>{
+    title.textContent = songs.title;
+    artist.textContent = songs.artist;
+    //music.src = "music/"+ songs.name + ".mp3";
+    music.src = `music/${songs.name}.mp3`;
+    img.src = "image/" + songs.name + ".jpg";
+};
+
+songIndex = 0;
+
+const nextSong = function(){
+    songIndex = (songIndex + 1) % songs.length;
+    loadsong(songs[songIndex]);
+    playmusic(); 
+};
+
+const previousSong= function(){
+    songIndex = (songIndex -1 + songs.length) % songs.length;
+    loadsong(songs[songIndex]);
+    playmusic();
+
+};
+
+music.addEventListener("timeupdate", (event) =>{
+    const { currentTime, duration }=event.srcElement;
+    //console.log(e);
+
+    let progress_timer=(currentTime/duration) * 100;
+    progress.style.width=`${progress_timer}%`;
+
+     //music Duration Update
+
+   
+});
+
+next.addEventListener("click",nextSong);
+previous.addEventListener("click", previousSong);
+
+    </script>
+    
+</body>
+</html>
